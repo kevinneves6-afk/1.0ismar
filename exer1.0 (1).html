@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página simples de saudação personalizada">
+  <title>Saudação</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    .form {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #28a745;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .mensagem {
+      min-height: 24px;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    @media (max-width: 480px) {
+      .form {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+    <h1>Olá!</h1>
+
+    <form id="formulario" class="form">
+      <label for="nomeInput" hidden>Digite seu nome</label>
+
+      <input
+        type="text"
+        id="nomeInput"
+        placeholder="Digite seu nome..."
+        autocomplete="name"
+        maxlength="100"
+        required
+      >
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p id="mensagem" class="mensagem" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const formulario = document.getElementById("formulario");
+    const nomeInput = document.getElementById("nomeInput");
+    const mensagem = document.getElementById("mensagem");
+
+    formulario.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const nome = nomeInput.value.trim();
+
+      if (!nome) {
+        mensagem.textContent = "Por favor, digite seu nome.";
+        nomeInput.focus();
+        return;
+      }
+
+      mensagem.textContent = `Olá, ${nome}! Seja bem-vindo(a)!`;
+    });
+  </script>
+
+</body>
+</html>
